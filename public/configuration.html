@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - IjaRivez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+</head>
+
+<body class="bg-gray-900 text-white font-sans bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f'); background-blend-mode: overlay;">
+
+
+    <!-- NAVBAR -->
+    <header class="bg-teal-600 shadow-lg relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span class="text-xl font-semibold">IjaRivez</span>
+            </div>
+
+            <!-- Menu desktop -->
+            <nav class="hidden md:flex items-center gap-6 text-white/90">
+                <a href="#" class="hover:text-white">Accueil</a>
+                <a href="#" class="hover:text-white">Cours</a>
+                <a href="#" class="font-semibold text-white">Notifications</a>
+                <a href="#" class="hover:text-white">Documents</a>
+                <a href="#" class="hover:text-white"><span class="material-symbols-outlined">person</span></a>
+                <a href="#" class="hover:text-white"><span class="material-symbols-outlined">logout</span></a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- CONFIGURATION -->
+    <section class="max-w-5xl mx-auto mt-10 p-6 relative z-10 ">
+
+        <a href="centrenotification.html" class="flex items-center gap-2 text-white/80 hover:text-white mb-4">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Configuration générale</span>
+        </a>
+
+        <div class="border-4 border-white p-6 rounded-xl  bg-transparent">
+
+            <!-- 3 colonnes responsive -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+
+                <!-- MODE -->
+                <div>
+                    <h3 class="font-semibold mb-2">Mode</h3>
+
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox"
+                                class="w-5 h-5 rounded-full border border-white bg-transparent checked:bg-teal-500 checked:border-teal-500 appearance-none transition">
+                            Normale
+                        </label>
+
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox"
+                                class="w-5 h-5 rounded-full border border-white bg-transparent checked:bg-teal-500 checked:border-teal-500 appearance-none transition">
+                            Silencieux
+                        </label>
+
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox"
+                                class="w-5 h-5 rounded-full border border-white bg-transparent checked:bg-teal-500 checked:border-teal-500 appearance-none transition">
+                            Urgent
+                        </label>
+                    </div>
+                </div>
+
+                <!-- TYPE DE SONNERIE -->
+                <div>
+                    <h3 class="font-semibold mb-2">Type de sonnerie</h3>
+                    <ul class="space-y-1 text-white/80">
+                        <li>Sonnerie courte</li>
+                        <li>Sonnerie alerte</li>
+                        <li>Sonnerie douce</li>
+                        <li>Sonnerie classique</li>
+                    </ul>
+                </div>
+
+                <!-- NOM DU SON -->
+                <div>
+                    <h3 class="font-semibold mb-2">Nom du son</h3>
+                    <div class="space-y-3 text-white/80">
+
+                        <div class="flex justify-between items-center">
+                            <span>Ding Dong</span>
+                            <a href="#" class="flex items-center gap-1 hover:text-teal-400">
+                                <span class="material-symbols-outlined text-lg">play_circle</span> Tester
+                            </a>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <span>Alert Beep</span>
+                            <a href="#" class="flex items-center gap-1 hover:text-teal-400">
+                                <span class="material-symbols-outlined text-lg">play_circle</span> Tester
+                            </a>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <span>Classic Ring</span>
+                            <a href="#" class="flex items-center gap-1 hover:text-teal-400">
+                                <span class="material-symbols-outlined text-lg">play_circle</span> Tester
+                            </a>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <span>Vibration Only</span>
+                            <a href="#" class="flex items-center gap-1 hover:text-teal-400">
+                                <span class="material-symbols-outlined text-lg">play_circle</span> Tester
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- TYPE DE NOTIFICATION -->
+    <section class="max-w-5xl mx-auto mt-10 p-6 relative z-10">
+
+        <div class="border-4 border-white p-6 rounded-xl  bg-transparent">
+
+            <h3 class="font-semibold text-center mb-4">Type de notification</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white/80">
+
+                <label class="flex items-center gap-2 justify-center">
+                    <input type="checkbox" class="w-4 h-4 accent-teal-500"> Nouveau cours
+                </label>
+
+                <label class="flex items-center gap-2 justify-center">
+                    <input type="checkbox" class="w-4 h-4 accent-teal-500"> Examens
+                </label>
+
+                <label class="flex items-center gap-2 justify-center">
+                    <input type="checkbox" class="w-4 h-4 accent-teal-500"> Corriger Exercise
+                </label>
+
+                <label class="flex items-center gap-2 justify-center">
+                    <input type="checkbox" class="w-4 h-4 accent-teal-500"> Td
+                </label>
+
+            </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="flex gap-4 mt-4 justify-end">
+            <button class="px-6 py-2 border border-white rounded hover:bg-white/20">Gérer les Alerts</button>
+            <button class="px-6 py-2 border border-white rounded hover:bg-white/20">Save</button>
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-teal-600 mt-16 py-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-white/90">
+
+            <div>
+                <h4 class="font-semibold mb-3">Notifications</h4>
+                <p>Nouveau cours disponible</p>
+                <p>14 Oct 2025</p>
+                <p>Devoir à rendre</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Documents</h4>
+                <p>Guide étude PDF - 2.4MB</p>
+                <p>Cours UX design PDF - 1.6MB</p>
+                <p>Exercice pratique PDF - 2.5MB</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Cours</h4>
+                <p>UX design – Progression: 80%</p>
+                <p>Mathématiques – Progression: 8%</p>
+                <p>Nouveau cours – Progression: 19%</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>

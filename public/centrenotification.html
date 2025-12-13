@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre de notification</title>
+
+    <!-- TAILWIND -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GOOGLE ICONS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+
+</head>
+
+<body class="bg-gray-900 text-white font-sans bg-cover bg-center " style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f'); background-blend-mode: overlay;">
+
+   
+
+    <!-- NAVBAR -->
+    <header class="relative bg-teal-600 shadow-lg z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span class="text-xl font-semibold">IjaRivez</span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-6 text-white/90">
+                <a href="#" class="hover:text-white">Accueil</a>
+                <a href="#" class="hover:text-white">Cours</a>
+                <a href="#" class="font-semibold text-white">Notifications</a>
+                <a href="#" class="hover:text-white">Documents</a>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="relative max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+
+        <!-- BACK BUTTON -->
+        <a href="#" class="flex items-center gap-2 text-white/80 hover:text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Centre de notification</span>
+        </a>
+
+        <!-- METRICS CARDS -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-8">
+
+            <!-- CARD -->
+            <div class="border-4 border-white p-4 sm:p-6 rounded-xl text-center ">
+                <span class="material-symbols-outlined text-white text-4xl">edit_document</span>
+                <div class="mt-3">
+                    <p class="text-xl sm:text-2xl font-bold">Documents</p>
+                    <p class="text-xl sm:text-2xl font-semibold">12</p>
+                </div>
+            </div>
+
+            <div class="border-4 border-white p-4 sm:p-6 rounded-xl text-center">
+                <span class="material-symbols-outlined text-white text-4xl">import_contacts</span>
+                <div class="mt-3">
+                    <p class="text-xl sm:text-2xl font-bold">Non lues</p>
+                    <p class="text-xl sm:text-2xl font-semibold">05</p>
+                </div>
+            </div>
+
+            <div class="border-4 border-white p-4 sm:p-6 rounded-xl text-center">
+                <span class="material-symbols-outlined text-white text-4xl">brightness_alert</span>
+                <div class="mt-3">
+                    <p class="text-xl sm:text-2xl font-bold">Importantes</p>
+                    <p class="text-xl sm:text-2xl font-semibold">08</p>
+                </div>
+            </div>
+
+            <div class="border-4 border-white p-4 sm:p-6 rounded-xl text-center">
+                <span class="material-symbols-outlined text-white text-4xl">today</span>
+                <div class="mt-3">
+                    <p class="text-xl sm:text-2xl font-bold">Aujourd'hui</p>
+                    <p class="text-xl sm:text-2xl font-semibold">03</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FILTERS -->
+        <h2 class="text-lg font-semibold mt-10">FILTER</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 text-white/80">
+
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4 accent-teal-500 rounded">
+                Notifications non lues
+            </label>
+
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4 accent-teal-500 rounded">
+                Notifications lues
+            </label>
+
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4 accent-teal-500 rounded">
+                Documents reçus
+            </label>
+
+            <label class="flex items-center gap-2">
+                <input type="checkbox" class="w-4 h-4 accent-teal-500 rounded">
+                Cours / TD / Examens
+            </label>
+
+        </div>
+
+        <!-- NOTIFICATIONS LIST -->
+        <div class="mt-10 space-y-6">
+
+            <!-- CARD NOTIFICATION -->
+            <div class="border-4 border-white p-6 rounded-xl">
+
+                <h3 class="text-xl font-semibold">Cours</h3>
+
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-2">
+
+                    <p class="text-white/80">
+                        Algèbre linéaire – nouveau chapitre<br>
+                        Transformation de sous-espaces vectoriels.
+                    </p>
+
+                    <div class="text-white/60 text-sm md:text-right">
+                        14/06/2025 09:30<br>
+                        Dans 2 jours
+                    </div>
+
+                    <div class="flex flex-col gap-3 w-full md:w-auto">
+                        <button class="px-4 py-2 border-4 rounded-xl text-center">
+                           <a href="configuration.html"> Voir plus</a>
+                        </button>
+
+                        <button class="px-4 py-2 border-4 rounded-xl flex justify-center items-center gap-2">
+                            Télécharger
+                            <span class="material-symbols-outlined">download</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- OTHER CARD -->
+            <div class="border-4 border-white p-6 rounded-xl">
+
+                <h3 class="text-xl font-semibold">Examen</h3>
+
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mt-2">
+
+                    <p class="text-white/80">
+                        Base de données – Examen final disponible.
+                    </p>
+
+                    <div class="text-white/60 text-sm md:text-right">
+                        14/06/2025 09:30<br>
+                        Dans 2 jours
+                    </div>
+
+                    <div class="flex flex-col gap-3 w-full md:w-auto">
+                        <button class="px-4 py-2 border-4 rounded-xl">
+                            <a href="configuration.html"> Voir plus</a>
+                        </button>
+
+                        <button class="px-4 py-2 border-4 rounded-xl flex justify-center items-center gap-2">
+                            Télécharger
+                            <span class="material-symbols-outlined">download</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-teal-600 mt-16 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-white/90">
+
+            <div>
+                <h4 class="font-semibold mb-3">Notifications</h4>
+                <p>Nouveaux cours disponibles</p>
+                <p>14 Oct 2025</p>
+                <p>Mise à jour planning</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Documents</h4>
+                <p>Guide utilisateur</p>
+                <p>PDF – 41MB</p>
+                <p>Cours – Algèbre</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Cours</h4>
+                <p>UX design</p>
+                <p>Mathématiques</p>
+                <p>Programmation</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
