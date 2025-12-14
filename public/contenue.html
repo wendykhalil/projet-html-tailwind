@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IjaRivez — Module Angular</title>
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+
+    /* Alternative using SVG for more control */
+    .star-svg {
+      width: 32px;
+      height: 32px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-gray-900 text-white">
+  <div class="fixed inset-0 -z-10 bg-cover bg-center" style="background-image: url('images/bg.png')"></div>
+  <div class="fixed inset-0 -z-10 bg-black/10"></div>
+
+  <!-- HEADER -->
+  <header class="relative bg-teal-600 shadow-lg z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined">menu_book</span>
+                <span class="text-xl font-semibold">IjaRivez</span>
+            </div>
+
+            <nav class="hidden md:flex items-center gap-6 text-white/90">
+                <a href="#" class="hover:text-white">Accueil</a>
+                <a href="#" class="font-semibold text-white">Cours</a>
+                <a href="centrenotification.html" class="hover:text-white">Notifications</a>
+                <a href="#" class="hover:text-white">Documents</a>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
+            </nav>
+
+        </div>
+    </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="relative py-20">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex items-center justify-between mb-16">
+        <a href="index.html" class="bg-white text-gray-800 w-[308px] h-[64px] rounded-full flex items-center justify-center font-medium hover:bg-gray-100 transition shadow-lg text-lg -ml-12">
+          Retour aux Modules
+        </a>
+        <h1 class="text-[32px] font-semibold text-white text-center flex-1">
+          Module 1 : Introduction au Angular
+        </h1>
+        <div class="bg-white/90 rounded-full flex items-center px-6 py-4 shadow-lg ml-auto -mr-32">
+          <input type="text" placeholder="recherche ici" class="text-gray-800 text-lg outline-none w-72 bg-transparent">
+          <span class="material-symbols-outlined text-gray-600 ml-4 text-2xl">search</span>
+        </div>
+      </div>
+
+      <div class="space-y-32">
+
+        <!-- Chapter 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="relative w-[419px] h-[287px] rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl -ml-12">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <img src="images/angular.png" class="w-48 h-48">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+              <span class="material-symbols-outlined text-white text-9xl opacity-80">play_arrow</span>
+            </div>
+          </div>
+
+          <div class="relative w-[741px] h-[234px] rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="relative z-10 p-8 flex h-full">
+
+              <div class="flex flex-col justify-between max-w-lg">
+                <h3 class="text-2xl font-bold">Chapitre 1 : Introduction au Angular</h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  Apprenez les bases du langage HTML, la structure d'une page web et les balises essentielles
+                </p>
+              </div>
+
+              <div class="ml-auto flex flex-col justify-between items-end">
+
+                <div class="flex gap-1 -mr-4 -mt-4">
+                  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+
+                <!-- ✅ ONLY COLOR CHANGED HERE -->
+                <div class="flex flex-col gap-1 mt-2">
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">visibility</span>
+                  </button>
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">send</span>
+                  </button>
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">cloud_download</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chapter 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="relative w-[419px] h-[287px] rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl -ml-12">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <img src="images/react.png" class="w-48 h-48">
+            </div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+              <span class="material-symbols-outlined text-white text-9xl opacity-80">play_arrow</span>
+            </div>
+          </div>
+
+          <div class="relative w-[741px] h-[234px] rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div class="relative z-10 p-8 flex h-full">
+
+              <div class="flex flex-col justify-between max-w-lg">
+                <h3 class="text-2xl font-bold">Chapitre 2 : Les bases d'Angular</h3>
+                <p class="text-white/90 text-sm leading-relaxed">
+                  Angular est un outil qui permet de créer des sites web modernes. Il fonctionne avec des "composants", qui sont de petites parties du site.
+                </p>
+              </div>
+
+              <div class="ml-auto flex flex-col justify-between items-end">
+
+                <div class="flex gap-1 -mr-4 -mt-4">
+  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+  </svg>
+  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+  </svg>
+  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+  </svg>
+  <svg class="star-svg" viewBox="0 0 24 24" fill="#F4B400">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+  </svg>
+  <svg class="star-svg" viewBox="0 0 24 24" fill="#D9D9D9">
+    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+  </svg>
+</div>
+
+
+                <!-- ✅ ONLY COLOR CHANGED HERE + fixed nested button -->
+                <div class="flex flex-col gap-1 mt-2">
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">visibility</span>
+                  </button>
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">send</span>
+                  </button>
+                  <button class="w-12 h-12 bg-[#D9D9D9] rounded-full flex-center hover:bg-[#cfcfcf] transition">
+                    <span class="material-symbols-outlined text-gray-800 text-2xl">cloud_download</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+        <div>
+          <h4 class="text-base font-bold mb-3">Notifications</h4>
+          <ul class="space-y-2 text-white/90 text-xs">
+            <li>Nouveau cours disponible<br><span class="opacity-70">14 Oct 2025</span></li>
+            <li>Devoir à rendre<br><span class="opacity-70">16 Oct 2025</span></li>
+            <li>Maintenance planifiée<br><span class="opacity-70">18 Oct 2025</span></li>
+            <li>Résultats d'examen<br><span class="opacity-70">20 Oct 2025</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-base font-bold mb-3">Documents</h4>
+          <ul class="space-y-2 text-white/90 text-xs">
+            <li>Guide étude<br><span class="opacity-70">PDF – 2.4MB</span></li>
+            <li>Cours ux design complet<br><span class="opacity-70">PDF – 1.6MB</span></li>
+            <li>Exercice pratique<br><span class="opacity-70">PDF – 2.5MB</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-base font-bold mb-3">Cours</h4>
+          <ul class="space-y-2 text-white/90 text-xs">
+            <li>UX design<br><span>Progression: 80%</span></li>
+            <li>Mathématique<br><span>Progression: 8%</span></li>
+            <li>Nouveau cours disponible<br><span>Progression: 19%</span></li>
+            <li>Nouveau cours disponible<br><span>Progression: 29%</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="flex justify-center gap-6 pt-4 border-t border-white/20">
+        <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
