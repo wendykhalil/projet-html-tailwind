@@ -1,221 +1,162 @@
-<!DOCTYPE html>
-<html lang="fr" class="h-full">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IjaRivez — Cours</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Tailwind -->
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google Material Symbols -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200..700&display=swap" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- FontAwesome (for footer icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- Poppins Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>IjaRivez</title>
+
+  <style>
+    .material-symbols-outlined{
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
 </head>
 
-<body class="h-full bg-gray-900 text-white" style="font-family: 'Poppins', sans-serif;">
-
-  <!-- FULL PAGE BACKGROUND -->
-  <div class="fixed inset-0 -z-10 bg-cover bg-center"
-       style="background-image: url('images/bg.png')">
-  </div>
-  <div class="fixed inset-0 -z-10 bg-black/10"></div>
+<body class="min-h-screen bg-slate-50 text-white">
 
   <!-- HEADER -->
-  <header class="relative bg-teal-600 shadow-lg z-20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+<header class="relative bg-teal-600 shadow-lg z-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined">menu_book</span>
-        <a href="home.html"><span class="text-xl font-semibold">IjaRivez</span></a>
-        
-      </div>
-
-      <nav class="hidden md:flex items-center gap-6 text-white/90">
-        <a href="home.html" class="hover:text-white">Accueil</a>
-        <a href="#" class="font-semibold text-white">Cours</a>
-        <a href="centrenotification.html" class="hover:text-white">Notifications</a>
-        <a href="#" class="hover:text-white">Documents</a>
-        <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
-        <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
-      </nav>
-
+    <!-- Logo -->
+    <div class="flex items-center gap-2 text-white">
+      <span class="material-symbols-outlined">menu_book</span>
+      <a href="home.html"><span class="text-xl font-semibold">IjaRivez</span></a>
+      
     </div>
-  </header>
 
-  <!-- MAIN -->
-  <main class="relative min-h-screen pt-24 pb-24">
-    <div class="max-w-7xl mx-auto px-6">
-
-      <!-- Title/Description -->
-<div class="mx-auto text-center mb-12 -translate-x-6"
-     style="width: 1380px; height: 195px; font-family: 'Poppins', sans-serif;">
-        <h1 class="font-bold leading-tight text-white flex items-center justify-center h-full"
-            style="font-size: 33px;">
-          La plateforme regroupe tous les supports pédagogiques essentiels : cours détaillés, exercices corrigés, examens et explications étapes par étape
-        </h1>
-      </div>
-
-      <!-- ✅ SEARCH BAR (FIXED: 1186 x 87 + same shape as filters) -->
-      <div
-        class="mx-auto bg-white/90 border border-gray-300 shadow-md rounded-xl
-               flex items-center px-8"
-        style="width:1186px; height:87px;"
+    <!-- Auth buttons -->
+    <div class="flex items-center gap-3">
+      <a
+        href="#"
+        class="px-5 py-2 rounded-lg bg-black text-white text-sm font-medium hover:bg-black/90 transition"
       >
-        <span class="material-symbols-outlined text-gray-500 text-2xl">
-          menu
-        </span>
+        Connexion
+      </a>
 
-        <input
-          type="text"
-          placeholder="recherche ici"
-          class="flex-1 mx-6 text-gray-800 text-base outline-none bg-transparent placeholder:text-gray-400"
-        />
+      <a
+        href="#"
+        class="px-5 py-2 rounded-lg border border-white text-white text-sm font-medium hover:bg-white hover:text-teal-700 transition"
+      >
+        Register
+      </a>
+    </div>
 
-        <span class="material-symbols-outlined text-gray-500 text-2xl">
-          search
-        </span>
-      </div>
-
-    <!-- FILTER BOXES -->
-<div class="mx-auto mt-6 flex flex-wrap justify-center gap-4" style="width:1186px;">
-
-  <!-- projet sdl — 114 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:114px; height:70px;"
-  >
-    projet sdl
-  </span>
-
-  <!-- programmation — 248 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:248px; height:70px;"
-  >
-    programmation
-  </span>
-
-  <!-- infographie — 118 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:118px; height:70px;"
-  >
-    infographie
-  </span>
-
-  <!-- algorithmique — 244 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:244px; height:70px;"
-  >
-    algorithmique
-  </span>
-
-  <!-- Angular — 114 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:114px; height:70px;"
-  >
-    Angular
-  </span>
-
-  <!-- programmation — 248 x 70 -->
-  <span
-    class="bg-white/90 text-[#009688] font-medium text-base
-           border border-gray-300 shadow-md rounded-xl
-           flex items-center justify-center whitespace-nowrap
-           hover:bg-white transition"
-    style="width:248px; height:70px;"
-  >
-    programmation
-  </span>
-
-</div>
-
-
-    <!-- ✅ CARDS (NOW IN NORMAL FLOW, NO OVERLAP) -->
-    <div class="relative mt-24">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="relative flex items-center justify-center">
-
-          <!-- Left Arrow -->
-<div class="absolute left-0 -translate-x-56 z-30">
-            <span class="material-symbols-outlined text-white text-9xl opacity-85 hover:opacity-100 cursor-pointer transition">
-              chevron_left
-            </span>
-          </div>
-
-          <div class="flex items-center justify-center gap-6 w-full max-w-6xl mx-auto">
-            <!-- Angular Card -->
-<a href="contenue.html" class="flex-shrink-0 relative rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-   style="width: 379px; height: 346.44px">
-  <div class="h-full bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-  <img src="images/angular.png" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40">
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-    <h3 class="text-[33px] font-bold text-white" style="font-family: 'Poppins', sans-serif;">Angular</h3>
   </div>
-</a>
-
-<!-- React Card -->
-<a href="contenue.html" class="flex-shrink-0 relative rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-   style="width: 516px; height: 346.44px">
-  <div class="h-full bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-  <img src="images/react.png" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40">
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-    <h3 class="text-[33px] font-bold text-white" style="font-family: 'Poppins', sans-serif;">React</h3>
-  </div>
-</a>
-
-<!-- Tailwind Card -->
-<a href="contenue.html" class="flex-shrink-0 relative rounded-3xl overflow-hidden border-[2.5px] border-white shadow-2xl cursor-pointer hover:scale-[1.02] transition-transform duration-300"
-   style="width: 379px; height: 346.44px">
-  <div class="h-full bg-cover bg-center" style="background-image: url('images/hero.jpg')"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-  <img src="images/tailwind.png" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40">
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-    <h3 class="text-[33px] font-bold text-white" style="font-family: 'Poppins', sans-serif;">Tailwind</h3>
-  </div>
-</a>
+</header>
 
 
-          <!-- Right Arrow -->
-<div class="absolute right-0 translate-x-56 z-30">
-            <span class="material-symbols-outlined text-white text-9xl opacity-85 hover:opacity-100 cursor-pointer transition">
-              chevron_right
-            </span>
-          </div>
+  <!-- HERO -->
+  <section class="relative">
+    <!-- Background image -->
+    <div
+      class="absolute inset-0 bg-center bg-cover"
+style="background-image: url('images/bg.png')">
+    ></div>
 
+    <!-- Dark overlay like screenshot -->
+    <div class="absolute inset-0 bg-black/10"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight max-w-4xl drop-shadow">
+        Tu veux réussir ton année et préparer ton avenir ?
+      </h1>
+
+      <!-- Search -->
+      <div class="mt-8 w-full max-w-5xl">
+        <div class="relative">
+          <!-- left icon -->
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-600">
+            menu
+          </span>
+
+          <input
+            type="text"
+            placeholder="recherche ici"
+            class="w-full rounded-2xl bg-white/95 text-slate-800 placeholder:text-slate-500 px-12 py-4 shadow-lg outline-none ring-1 ring-black/10 focus:ring-2 focus:ring-teal-500"
+          />
+
+          <!-- right icon -->
+          <button
+            class="absolute right-3 top-1/2 -translate-y-1/2 rounded-xl p-2 text-slate-600 hover:text-slate-900"
+            aria-label="search"
+          >
+            <span class="material-symbols-outlined">search</span>
+          </button>
         </div>
       </div>
+
+      <div class="mt-10 text-right">
+        <span class="text-3xl sm:text-4xl font-light tracking-wide drop-shadow">
+          IjaRivez
+        </span>
+        <span class="text-2xl sm:text-3xl font-light opacity-90 drop-shadow">
+          &nbsp;est là pour toi !
+        </span>
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- CARDS STRIP -->
+  <section class="bg-teal-100/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <div class="rounded-2xl bg-teal-700 shadow-[0_10px_30px_rgba(0,0,0,0.25)] border border-white/10 p-8 flex flex-col items-center text-center">
+          <span class="material-symbols-outlined text-5xl mb-4">folder_open</span>
+          <h3 class="text-xl font-semibold">Cours</h3>
+          <p class="text-white/85 text-xs mt-2 max-w-xs">
+            Accède à tous tes cours et révise à ton rythme.
+          </p>
+          <a href="index.html"
+             class="mt-6 inline-flex items-center justify-center rounded-lg bg-white/95 text-teal-800 text-xs font-semibold px-5 py-2 hover:bg-white transition">
+            Voir plus
+          </a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="rounded-2xl bg-teal-700 shadow-[0_10px_30px_rgba(0,0,0,0.25)] border border-white/10 p-8 flex flex-col items-center text-center">
+          <span class="material-symbols-outlined text-5xl mb-4">notifications</span>
+          <h3 class="text-xl font-semibold">Notifications</h3>
+          <p class="text-white/85 text-xs mt-2 max-w-xs">
+            Reste informé des rappels, examens et mises à jour.
+          </p>
+          <a href="centrenotification.html"
+             class="mt-6 inline-flex items-center justify-center rounded-lg bg-white/95 text-teal-800 text-xs font-semibold px-5 py-2 hover:bg-white transition">
+            Voir plus
+          </a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="rounded-2xl bg-teal-700 shadow-[0_10px_30px_rgba(0,0,0,0.25)] border border-white/10 p-8 flex flex-col items-center text-center">
+          <span class="material-symbols-outlined text-5xl mb-4">menu_book</span>
+          <h3 class="text-xl font-semibold">Documents</h3>
+          <p class="text-white/85 text-xs mt-2 max-w-xs">
+            Range et retrouve facilement tous tes fichiers de révision.
+          </p>
+          <a href="#"
+             class="mt-6 inline-flex items-center justify-center rounded-lg bg-white/95 text-teal-800 text-xs font-semibold px-5 py-2 hover:bg-white transition">
+            Voir plus
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER (small, consistent) -->
-  <footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-8">
+  <footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-0">
     <div class="max-w-7xl mx-auto px-6 py-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
 
