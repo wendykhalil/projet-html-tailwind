@@ -5,6 +5,7 @@
 ## Nom du groupe thinkTank
 
 **ijariviz**
+
 # Plateforme de Partage de Cours et Examens
 
 ## Utilité
@@ -18,11 +19,19 @@ Cette plateforme est principalement destinée aux **nouveaux étudiants de 1ère
 
 ---
 
+## Technologies utilisées
+- **HTML** pour la structure des pages
+- **CSS** pour le style et la mise en page
+- **Tailwind CSS** pour un design rapide et responsive
+
+---
+
 ## Fonctionnalités principales
 - Consultation des cours et examens par niveau et matière
 - Téléchargement des documents disponibles
 - Organisation claire et intuitive des ressources
 - Interface simple pour faciliter la navigation des étudiants débutants
+- Design moderne et responsive grâce à Tailwind
 
 ---
 
@@ -31,8 +40,6 @@ Cette plateforme est principalement destinée aux **nouveaux étudiants de 1ère
 ```bash
 git clone https://github.com/votre-utilisateur/votre-repo.git
 
-
----
 
 ## Membres & interfaces réalisées
 
