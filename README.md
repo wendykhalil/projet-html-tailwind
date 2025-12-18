@@ -5,6 +5,32 @@
 ## Nom du groupe thinkTank
 
 **ijariviz**
+# Plateforme de Partage de Cours et Examens
+
+## Utilité
+Cette application a pour objectif de **rassembler et partager les anciens cours et examens** de chaque niveau universitaire dans un **espace unique et organisé**.  
+Elle permet aux étudiants de mieux réviser et d’augmenter leurs chances de réussite aux examens.
+
+---
+
+## Cible
+Cette plateforme est principalement destinée aux **nouveaux étudiants de 1ère année universitaire**, qui souhaitent accéder facilement aux ressources académiques et se préparer efficacement.
+
+---
+
+## Fonctionnalités principales
+- Consultation des cours et examens par niveau et matière
+- Téléchargement des documents disponibles
+- Organisation claire et intuitive des ressources
+- Interface simple pour faciliter la navigation des étudiants débutants
+
+---
+
+## Installation
+1. Cloner le dépôt :
+```bash
+git clone https://github.com/votre-utilisateur/votre-repo.git
+
 
 ---
 
