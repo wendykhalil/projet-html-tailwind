@@ -14,6 +14,9 @@ Elle permet aux étudiants de mieux réviser et d’augmenter leurs chances de r
 
 ---
 
+
+[Accéder à l'application](https://projet-html-tailwind-kappa.vercel.app/)
+
 ## Cible
 Cette plateforme est principalement destinée aux **nouveaux étudiants de 1ère année universitaire**, qui souhaitent accéder facilement aux ressources académiques et se préparer efficacement.
 
