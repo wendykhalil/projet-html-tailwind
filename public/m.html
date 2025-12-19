@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IjaRivez — Module Angular</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+    </style>
+  </head>
+
+  <body class="h-full bg-gray-900 text-white">
+    <div
+      class="fixed inset-0 -z-10 bg-cover bg-center"
+      style="background-image: url('images/bg.png')"
+    ></div>
+    <div class="fixed inset-0 -z-10 bg-black/10"></div>
+
+    <!-- HEADER -->
+    <header class="relative bg-teal-600 shadow-lg z-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined">menu_book</span>
+          <span class="text-xl font-semibold">IjaRivez</span>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-6 text-white/90">
+          <a href="index.html" class="hover:text-white">Accueil</a>
+          <a href="#" class="font-semibold text-white">Cours</a>
+          <a href="#" class="hover:text-white">Notifications</a>
+          <a href="#" class="hover:text-white">Documents</a>
+          <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
+          <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="relative py-12">
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Back Button + Title -->
+        <div class="mb-8">
+          <a
+            href="contenue.html"
+            class="inline-block bg-white text-gray-800 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition shadow-lg text-base"
+          >
+            Retour aux Chapitres
+          </a>
+        </div>
+
+        <div class="mb-8">
+          <h1 class="text-3xl font-semibold text-white mb-2">Module 1 : Introduction au Angular</h1>
+          <p class="text-white/80 text-lg">1 / 4 chapitres terminés</p>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Left Side - Main Video -->
+          <div class="lg:col-span-2">
+            <div
+              class="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-white shadow-2xl mb-8"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center"
+                style="background-image: url('images/hero.jpg')"
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+              ></div>
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <img src="images/angular.png" class="w-32 h-32 md:w-48 md:h-48" />
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <h2 class="text-4xl md:text-5xl font-bold text-white mb-2">Intro to</h2>
+                  <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Angular</h2>
+                  <p class="text-2xl md:text-3xl text-white">Part 1</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chapter Card -->
+            <div
+              class="bg-gray-800/60 backdrop-blur-sm rounded-2xl p-8 border border-white/10 shadow-xl"
+            >
+              <h3 class="text-2xl font-bold text-white mb-4">Chapitre 1 :</h3>
+              <h4 class="text-xl font-semibold text-white mb-4">Introduction au Angular</h4>
+              <p class="text-white/80 leading-relaxed mb-6">
+                Angular est un framework de développement créé par Google qui permet de construire
+                des applications web modernes, dynamiques et performantes. Il utilise TypeScript et
+                suit une architecture basée sur les composants.
+              </p>
+              <a
+                href="mm.html"
+                class="inline-block bg-white text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition shadow-md"
+              >
+                Voir la progression
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Side - Search + Video Thumbnails -->
+          <div class="lg:col-span-1">
+            <!-- Search Bar -->
+            <div class="bg-white/90 rounded-full flex items-center px-4 py-3 shadow-lg mb-6">
+              <input
+                type="text"
+                placeholder="recherche ici"
+                class="text-gray-800 text-sm outline-none w-full bg-transparent placeholder:text-gray-400"
+              />
+              <span class="material-symbols-outlined text-gray-600 ml-2">search</span>
+            </div>
+
+            <!-- Video Thumbnails -->
+            <div class="space-y-4">
+              <!-- Video 1 -->
+              <div
+                class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/20 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+              >
+                <div
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('images/hero.jpg')"
+                ></div>
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <img src="images/angular.png" class="w-16 h-16" />
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-white text-5xl opacity-80"
+                    >play_arrow</span
+                  >
+                </div>
+                <div class="absolute bottom-2 left-2 right-2">
+                  <p class="text-white text-xs font-medium">Intro to Angular Part 1</p>
+                </div>
+              </div>
+
+              <!-- Video 2 -->
+              <div
+                class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/20 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+              >
+                <div
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('images/hero.jpg')"
+                ></div>
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <img src="images/angular.png" class="w-16 h-16" />
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-white text-5xl opacity-80"
+                    >play_arrow</span
+                  >
+                </div>
+                <div class="absolute bottom-2 left-2 right-2">
+                  <p class="text-white text-xs font-medium">Apprendre les composants Angular</p>
+                </div>
+              </div>
+
+              <!-- Video 3 -->
+              <div
+                class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/20 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+              >
+                <div
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('images/hero.jpg')"
+                ></div>
+                <div class="absolute inset-0 bg-black/40"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <img src="images/angular.png" class="w-16 h-16" />
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-white text-5xl opacity-80"
+                    >play_arrow</span
+                  >
+                </div>
+                <div class="absolute bottom-2 left-2 right-2">
+                  <p class="text-white text-xs font-medium">ACM - Angular Component Methods</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-16">
+      <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h4 class="text-base font-bold mb-3">Notifications</h4>
+            <ul class="space-y-2 text-white/90 text-xs">
+              <li>Nouveau cours disponible<br /><span class="opacity-70">14 Oct 2025</span></li>
+              <li>Devoir à rendre<br /><span class="opacity-70">16 Oct 2025</span></li>
+              <li>Maintenance planifiée<br /><span class="opacity-70">18 Oct 2025</span></li>
+              <li>Résultats d'examen<br /><span class="opacity-70">20 Oct 2025</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-base font-bold mb-3">Documents</h4>
+            <ul class="space-y-2 text-white/90 text-xs">
+              <li>Guide étude<br /><span class="opacity-70">PDF – 2.4MB</span></li>
+              <li>Cours ux design complet<br /><span class="opacity-70">PDF – 1.6MB</span></li>
+              <li>Exercice pratique<br /><span class="opacity-70">PDF – 2.5MB</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-base font-bold mb-3">Cours</h4>
+            <ul class="space-y-2 text-white/90 text-xs">
+              <li>UX design<br /><span>Progression: 80%</span></li>
+              <li>Mathématique<br /><span>Progression: 8%</span></li>
+              <li>Nouveau cours disponible<br /><span>Progression: 19%</span></li>
+              <li>Nouveau cours disponible<br /><span>Progression: 29%</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 pt-4 border-t border-white/20">
+          <a href="#" class="text-lg text-white/80 hover:text-white transition"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="text-lg text-white/80 hover:text-white transition"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="text-lg text-white/80 hover:text-white transition"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="text-lg text-white/80 hover:text-white transition"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
