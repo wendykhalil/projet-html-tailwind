@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IjaRivez - Calendrier Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Material Symbols -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+
+    <style>
+        :root { --color-primary-teal: #009688; --calendar-gray: #7d7d7d; }
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+        .page-background {
+            background-image: url('image/image1.png'), linear-gradient(rgba(0, 50, 45, 0.95), rgba(0, 50, 45, 0.95));
+            background-size: cover; background-position: center; background-attachment: fixed;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+        }
+
+        .header-footer-bg { background-color: var(--color-primary-teal); color: white; }
+        .nav-link:hover { border-bottom: 2px solid white; }
+
+        /* Badge Style */
+        .badge-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .badge-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .badge-card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.2); }
+        .badge-icon { font-size: 1.8rem; margin-bottom: 0.5rem; color: #4db6ac; }
+        .badge-value { font-size: 1.5rem; font-weight: 800; display: block; }
+        .badge-label { font-size: 0.75rem; opacity: 0.8; font-weight: 500; }
+
+        /* Popup Moderne */
+        .modern-popup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .popup-content {
+            background: white;
+            color: #333;
+            padding: 2.5rem;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            transform: scale(0.9);
+            animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes popIn { to { transform: scale(1); } }
+
+        /* Calendar & Sidebar */
+        .calendar-main-container { background-color: var(--calendar-gray); border-radius: 0 32px 32px 0; padding: 2.5rem; }
+        .task-sidebar-pro { background-color: var(--color-primary-teal); border-radius: 32px 0 0 32px; padding: 2.5rem; min-height: 600px; }
+
+        .calendar-day-box {
+            aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; cursor: pointer; transition: 0.3s;
+            font-weight: 500; color: white; border: 2px solid transparent;
+        }
+        .day-has-activity { background: rgba(255, 255, 255, 0.2); }
+        .calendar-day-active { background: white !important; color: var(--calendar-gray) !important; font-weight: 800; transform: scale(1.1); }
+        .day-missed { border: 2px solid #ff4d4d !important; background: rgba(255, 77, 77, 0.2) !important; }
+
+        .task-item { background: rgba(255, 255, 255, 0.25); border-radius: 12px; margin-bottom: 0.75rem; transition: 0.3s; }
+        .task-completed { opacity: 0.5; text-decoration: line-through; }
+        .task-missed { border-left: 4px solid #ff4d4d; color: #ff8a8a; }
+
+        .btn-action { font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 4px; transition: 0.2s; cursor: pointer; }
+        .btn-edit { background: rgba(255, 255, 255, 0.2); }
+        .btn-del { background: rgba(255, 77, 77, 0.3); }
+
+        .input-add { background: rgba(255, 255, 255, 0.1); border: 1px dashed rgba(255,255,255,0.4); color: white; width: 100%; padding: 8px; border-radius: 8px; font-size: 12px; margin-bottom: 8px; }
+        .modal-blur { backdrop-filter: blur(10px); background: rgba(0,0,0,0.7); }
+
+        .star-rating { color: #fbbf24; cursor: pointer; font-size: 1.5rem; }
+    </style>
+</head>
+
+<body class="min-h-screen text-white flex flex-col">
+<div class="page-background"></div>
+
+<header class="relative bg-teal-600 shadow-lg z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined">menu_book</span>
+            <a href="home.html"><span class="text-xl font-semibold">IjaRivez</span></a>
+
+        </div>
+
+        <nav class="hidden md:flex items-center gap-6 text-white/90">
+            <a href="" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Cours</a>
+            <a href="" class="nav-link">Notifications</a>
+            <a href="index.html" class="border-b-2 border-white pb-1">Documents</a>
+            <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
+            <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
+        </nav>
+
+    </div>
+</header>
+<body>
+
+<main class="flex-grow container mx-auto px-6 py-10">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+        <a href="index.html" class="bg-white text-gray-800 font-bold py-2 px-6 rounded-lg shadow hover:bg-gray-100 transition">
+            <i class="fas fa-arrow-left mr-2"></i> Retour
+        </a>
+        <h1 class="text-4xl font-extrabold flex items-center">
+            <i class="far fa-calendar-check mr-4 text-teal-400"></i> Calendrier
+        </h1>
+        <a href="exacoach.html" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-6 rounded-lg border border-teal-400/30 flex items-center">
+            <i class="fas fa-graduation-cap mr-2"></i> Exacoach
+        </a>
+    </div>
+
+    <div class="badge-container max-w-5xl mx-auto">
+        <div class="badge-card" onclick="showPopup('docs')">
+            <i class="fas fa-file-signature badge-icon"></i>
+            <span class="badge-value">12</span>
+            <span class="badge-label">Documents terminés</span>
+        </div>
+        <div class="badge-card" onclick="showPopup('unread')">
+            <i class="fas fa-book-open badge-icon"></i>
+            <span class="badge-value">05</span>
+            <span class="badge-label">Non Lues</span>
+        </div>
+        <div class="badge-card" onclick="showPopup('important')">
+            <i class="fas fa-star-half-alt badge-icon"></i>
+            <span class="badge-value">08</span>
+            <span class="badge-label">Importantes</span>
+        </div>
+        <div class="badge-card" onclick="showPopup('today')">
+            <i class="fas fa-clock badge-icon text-yellow-400"></i>
+            <span class="badge-value" id="badgeTodayDate">--/--</span>
+            <span class="badge-label">Aujourd'hui</span>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto mb-12 relative">
+        <input type="text" placeholder="Rechercher une activité..." class="w-full bg-white/10 border border-white/20 py-4 px-14 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500 text-white">
+        <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-teal-400 text-xl"></i>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-0 shadow-2xl rounded-[32px] overflow-hidden">
+        <div class="lg:col-span-1 task-sidebar-pro">
+            <div class="mb-10 text-center lg:text-left">
+                <p id="sideDay" class="text-8xl font-light">--</p>
+                <p id="sideMonthYear" class="text-xl font-bold uppercase tracking-widest text-white/80">--</p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-white/60 mb-4 flex justify-between items-center">
+                        À faire ! <i class="fas fa-plus cursor-pointer hover:text-white" onclick="toggleAddForm('todo')"></i>
+                    </h3>
+                    <div id="form-todo" class="hidden mb-4">
+                        <input type="text" id="input-todo" class="input-add" placeholder="Titre de la tâche...">
+                        <button onclick="addTask('todo')" class="w-full bg-white text-teal-800 text-[10px] font-bold py-2 rounded">VALIDER</button>
+                    </div>
+                    <ul id="todoList" class="space-y-3"></ul>
+                </div>
+                <div>
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-white/60 mb-4 flex justify-between items-center">
+                        Mes Activités ! <i class="fas fa-plus cursor-pointer hover:text-white" onclick="toggleAddForm('activity')"></i>
+                    </h3>
+                    <div id="form-activity" class="hidden mb-4">
+                        <input type="text" id="input-act-time" class="input-add" placeholder="Ex: 08:00 - 10:00">
+                        <input type="text" id="input-act-name" class="input-add" placeholder="Nom de l'activité...">
+                        <button onclick="addTask('activity')" class="w-full bg-white text-teal-800 text-[10px] font-bold py-2 rounded">VALIDER</button>
+                    </div>
+                    <ul id="activityList" class="space-y-3"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 calendar-main-container">
+            <div class="flex justify-between items-center mb-10">
+                <button onclick="changeMonth(-1)" class="hover:text-teal-300 transition text-2xl"><i class="fas fa-chevron-left"></i></button>
+                <span id="currentMonthDisplay" class="text-2xl font-medium uppercase tracking-[0.2em]">--</span>
+                <button onclick="changeMonth(1)" class="hover:text-teal-300 transition text-2xl"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="grid grid-cols-7 gap-4 text-center font-bold text-white/30 text-[11px] mb-8 uppercase tracking-widest">
+                <div>Lun</div><div>Mar</div><div>Mer</div><div>Jeu</div><div>Ven</div><div>Sam</div><div>Dim</div>
+            </div>
+            <div id="calendarGrid" class="grid grid-cols-7 gap-4 md:gap-6"></div>
+        </div>
+    </div>
+</main>
+
+<div id="badgePopup" class="modern-popup" onclick="closePopup(event)">
+    <div class="popup-content shadow-2xl" onclick="event.stopPropagation()">
+        <div id="popupContentInner"></div>
+        <button onclick="document.getElementById('badgePopup').style.display='none'" class="mt-8 w-full bg-teal-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-teal-700 transition">Compris !</button>
+    </div>
+</div>
+
+<div id="validModal" class="hidden fixed inset-0 z-[100] modal-blur flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-sm w-full text-center shadow-2xl text-gray-800">
+        <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"><i class="fas fa-check"></i></div>
+        <h2 class="text-2xl font-bold mb-2">Tâche terminée !</h2>
+        <div class="flex justify-center space-x-2 mb-8" id="starContainer">
+            <i class="fas fa-star star-rating" onclick="setNote(1)"></i>
+            <i class="fas fa-star star-rating text-gray-200" onclick="setNote(2)"></i>
+            <i class="fas fa-star star-rating text-gray-200" onclick="setNote(3)"></i>
+            <i class="fas fa-star star-rating text-gray-200" onclick="setNote(4)"></i>
+            <i class="fas fa-star star-rating text-gray-200" onclick="setNote(5)"></i>
+        </div>
+        <button onclick="closeModal()" class="w-full bg-[#009688] text-white font-bold py-4 rounded-2xl">Enregistrer</button>
+    </div>
+</div>
+
+<div id="editModal" class="hidden fixed inset-0 z-[110] modal-blur flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl text-gray-800">
+        <h2 class="text-xl font-bold mb-6 flex items-center"><i class="fas fa-edit text-teal-600 mr-3"></i> Modifier</h2>
+        <input type="text" id="editInputValue" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl mb-4 outline-none">
+        <div id="editTimeContainer" class="hidden"><input type="text" id="editTimeValue" class="w-full bg-gray-50 border border-gray-200 p-4 rounded-xl mb-4 outline-none"></div>
+        <div class="grid grid-cols-2 gap-3">
+            <button onclick="closeEditModal()" class="py-3 font-bold text-gray-400">Annuler</button>
+            <button onclick="confirmEdit()" class="py-3 font-bold text-white bg-teal-600 rounded-xl">OK</button>
+        </div>
+    </div>
+</div>
+
+<footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+            <div>
+                <h4 class="text-base font-bold mb-3">Notifications</h4>
+                <ul class="space-y-2 text-white/90 text-xs">
+                    <li>Nouveau cours disponible<br><span class="opacity-70">14 Oct 2025</span></li>
+                    <li>Devoir à rendre<br><span class="opacity-70">16 Oct 2025</span></li>
+                    <li>Maintenance planifiée<br><span class="opacity-70">18 Oct 2025</span></li>
+                    <li>Résultats d'examen<br><span class="opacity-70">20 Oct 2025</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3">Documents</h4>
+                <ul class="space-y-2 text-white/90 text-xs">
+                    <li>Guide étude<br><span class="opacity-70">PDF – 2.4MB</span></li>
+                    <li>Cours ux design complet<br><span class="opacity-70">PDF – 1.6MB</span></li>
+                    <li>Exercice pratique<br><span class="opacity-70">PDF – 2.5MB</span></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-base font-bold mb-3">Cours</h4>
+                <ul class="space-y-2 text-white/90 text-xs">
+                    <li>UX design<br><span>Progression: 80%</span></li>
+                    <li>Mathématique<br><span>Progression: 8%</span></li>
+                    <li>Nouveau cours disponible<br><span>Progression: 19%</span></li>
+                    <li>Nouveau cours disponible<br><span>Progression: 29%</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="flex justify-center gap-6 pt-4 border-t border-white/20">
+            <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    let tasksDb = JSON.parse(localStorage.getItem('ijaRivezTasks')) || {};
+    let date = new Date();
+    let selectedDay = date.getDate();
+    let currentEditObj = { type: '', index: '' };
+    let tempNote = 1;
+    let currentTaskIndex = null;
+    const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+    // POPUP LOGIC
+    function showPopup(type) {
+        const popup = document.getElementById('badgePopup');
+        const inner = document.getElementById('popupContentInner');
+        let content = "";
+
+        if(type === 'docs') {
+            content = `<div class='text-teal-600 text-4xl mb-4'><i class='fas fa-file-invoice'></i></div><h2 class='text-2xl font-bold mb-2'>Documents</h2><p class='text-gray-500'>Vous avez finalisé 12 documents ce mois-ci. Excellent travail !</p>`;
+        } else if(type === 'unread') {
+            content = `<div class='text-blue-500 text-4xl mb-4'><i class='fas fa-envelope-open-text'></i></div><h2 class='text-2xl font-bold mb-2'>Notifications</h2><p class='text-gray-500'>5 nouveaux messages attendent votre lecture dans votre boîte de réception.</p>`;
+        } else if(type === 'important') {
+            content = `<div class='text-yellow-500 text-4xl mb-4'><i class='fas fa-star'></i></div><h2 class='text-2xl font-bold mb-2'>Important</h2><p class='text-gray-500'>8 tâches ont été marquées comme prioritaires pour votre examen final.</p>`;
+        } else if(type === 'today') {
+            const count = tasksDb[`${date.getFullYear()}-${date.getMonth()}-${selectedDay}`]?.todos?.length || 0;
+            content = `<div class='text-teal-500 text-4xl mb-4'><i class='fas fa-calendar-day'></i></div><h2 class='text-2xl font-bold mb-2'>${selectedDay} ${monthNames[date.getMonth()]}</h2><p class='text-gray-500'>Vous avez ${count} tâche(s) enregistrée(s) pour cette date.</p>`;
+        }
+
+        inner.innerHTML = content;
+        popup.style.display = 'flex';
+    }
+
+    function closePopup(e) { if(e.target.id === 'badgePopup') e.target.style.display = 'none'; }
+
+    // CALENDAR LOGIC (YOUR ORIGINAL)
+    function save() { localStorage.setItem('ijaRivezTasks', JSON.stringify(tasksDb)); }
+
+    function render() {
+        const grid = document.getElementById('calendarGrid');
+        const month = date.getMonth();
+        const year = date.getFullYear();
+
+        document.getElementById('currentMonthDisplay').innerText = `${monthNames[month]} ${year}`;
+        document.getElementById('sideMonthYear').innerText = `${monthNames[month]} ${year}`;
+        document.getElementById('sideDay').innerText = selectedDay.toString().padStart(2,'0');
+
+        // Dynamic Badge Date
+        document.getElementById('badgeTodayDate').innerText = `${selectedDay.toString().padStart(2,'0')}/${(month+1).toString().padStart(2,'0')}`;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        grid.innerHTML = '';
+        let offset = firstDay === 0 ? 6 : firstDay - 1;
+        for(let i=0; i<offset; i++) grid.innerHTML += '<div></div>';
+        for(let d=1; d<=daysInMonth; d++) {
+            const key = `${year}-${month}-${d}`;
+            const hasTask = tasksDb[key] && ((tasksDb[key].todos?.length > 0) || (tasksDb[key].activities?.length > 0));
+            const isMissed = tasksDb[key]?.todos?.some(t => t.missed);
+            grid.innerHTML += `<div onclick="selectDay(${d})" class="calendar-day-box ${d === selectedDay ? 'calendar-day-active' : ''} ${hasTask ? 'day-has-activity' : ''} ${isMissed ? 'day-missed' : ''}">${d}</div>`;
+        }
+        updateSidebarUI();
+    }
+
+    function selectDay(d) { selectedDay = d; render(); }
+    function changeMonth(dir) { date.setMonth(date.getMonth() + dir); selectedDay = 1; render(); }
+
+    function updateSidebarUI() {
+        const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`;
+        const tList = document.getElementById('todoList');
+        const aList = document.getElementById('activityList');
+        tList.innerHTML = ''; aList.innerHTML = '';
+        if(tasksDb[key]) {
+            tasksDb[key].todos?.forEach((t, i) => {
+                tList.innerHTML += `<li class="task-item p-3 flex flex-col ${t.completed ? 'task-completed' : ''} ${t.missed ? 'task-missed' : ''}"><div class="flex justify-between items-center mb-2"><span class="text-xs font-medium cursor-pointer" onclick="toggleComplete(${i})">${t.text} ${t.note ? '⭐'+t.note : ''}</span><i class="fas ${t.completed ? 'fa-check-circle' : 'fa-circle'} opacity-40"></i></div><div class="flex space-x-2"><button onclick="openEdit('todo', ${i})" class="btn-action btn-edit">EDIT</button><button onclick="deleteItem('todo', ${i})" class="btn-action btn-del">SUPPR</button><button onclick="toggleMissed(${i})" class="btn-action ${t.missed ? 'bg-white text-red-600' : 'bg-red-500/20'}">RATÉ</button></div></li>`;
+            });
+            tasksDb[key].activities?.forEach((a, i) => {
+                aList.innerHTML += `<li class="task-item p-3"><div class="flex flex-col mb-2"><span class="text-[8px] font-bold opacity-50 uppercase">${a.time}</span><span class="text-xs font-bold">${a.text}</span></div><div class="flex space-x-2"><button onclick="openEdit('activity', ${i})" class="btn-action btn-edit">EDIT</button><button onclick="deleteItem('activity', ${i})" class="btn-action btn-del">SUPPR</button></div></li>`;
+            });
+        }
+    }
+
+    function toggleAddForm(id) { document.getElementById('form-'+id).classList.toggle('hidden'); }
+    function addTask(type) {
+        const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`;
+        if(!tasksDb[key]) tasksDb[key] = { todos: [], activities: [] };
+        if(type === 'todo') {
+            const val = document.getElementById('input-todo').value;
+            if(val) tasksDb[key].todos.push({ text: val, completed: false, missed: false, note: 0 });
+            document.getElementById('input-todo').value = '';
+        } else {
+            const time = document.getElementById('input-act-time').value;
+            const name = document.getElementById('input-act-name').value;
+            if(time && name) tasksDb[key].activities.push({ time, text: name });
+            document.getElementById('input-act-time').value = ''; document.getElementById('input-act-name').value = '';
+        }
+        save(); render(); toggleAddForm(type);
+    }
+    function deleteItem(type, i) { const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; if(type === 'todo') tasksDb[key].todos.splice(i, 1); else tasksDb[key].activities.splice(i, 1); save(); render(); }
+    function toggleComplete(i) { const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; tasksDb[key].todos[i].completed = !tasksDb[key].todos[i].completed; if(tasksDb[key].todos[i].completed) { currentTaskIndex = i; setNote(1); document.getElementById('validModal').classList.remove('hidden'); } save(); render(); }
+    function setNote(n) { tempNote = n; document.querySelectorAll('#starContainer i').forEach((s, idx) => { s.classList.toggle('text-yellow-400', idx < n); s.classList.toggle('text-gray-200', idx >= n); }); }
+    function closeModal() { const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; tasksDb[key].todos[currentTaskIndex].note = tempNote; save(); render(); document.getElementById('validModal').classList.add('hidden'); }
+    function toggleMissed(i) { const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; tasksDb[key].todos[i].missed = !tasksDb[key].todos[i].missed; save(); render(); }
+    function openEdit(type, i) { currentEditObj = { type, index: i }; const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; const item = type === 'todo' ? tasksDb[key].todos[i] : tasksDb[key].activities[i]; document.getElementById('editInputValue').value = item.text; if(type === 'activity') { document.getElementById('editTimeContainer').classList.remove('hidden'); document.getElementById('editTimeValue').value = item.time; } else { document.getElementById('editTimeContainer').classList.add('hidden'); } document.getElementById('editModal').classList.remove('hidden'); }
+    function confirmEdit() { const { type, index } = currentEditObj; const key = `${date.getFullYear()}-${date.getMonth()}-${selectedDay}`; const val = document.getElementById('editInputValue').value; if(type === 'todo') tasksDb[key].todos[index].text = val; else { tasksDb[key].activities[index].text = val; tasksDb[key].activities[index].time = document.getElementById('editTimeValue').value; } save(); render(); closeEditModal(); }
+    function closeEditModal() { document.getElementById('editModal').classList.add('hidden'); }
+    document.addEventListener('DOMContentLoaded', render);
+</script>
+</body>
+</html>
