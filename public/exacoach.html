@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exacoach - IjaRivez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap" />
+
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+        .header-footer-bg { background-color: #009688; color: white; }
+
+        .page-background {
+            background-image: url('image/image1.png'), linear-gradient(rgba(0, 50, 45, 0.85), rgba(0, 50, 45, 0.85));
+            background-size: cover; background-position: center; background-blend-mode: overlay;
+            filter: blur(4px); position: fixed; inset: 0; z-index: -1; transform: scale(1.05);
+        }
+
+        .content-wrapper { position: relative; z-index: 10; }
+        .test-card {
+            background-color: rgba(0, 30, 28, 0.9);
+            border: 1px solid rgba(0, 150, 136, 0.3);
+            border-radius: 20px; backdrop-filter: blur(10px); transition: all 0.3s ease;
+        }
+        .test-card:hover { border-color: #00ffd2; transform: translateY(-5px); }
+
+        .modal-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+            z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white; color: #333; border-radius: 20px; width: 95%; max-width: 800px;
+            max-height: 90vh; overflow-y: auto; animation: popIn 0.3s ease-out;
+        }
+        @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .exam-paper { padding: 40px; color: #1a1a1a; line-height: 1.6; }
+        .exam-header { border-bottom: 2px solid #333; margin-bottom: 30px; padding-bottom: 10px; }
+    </style>
+</head>
+
+<body class="min-h-screen text-white">
+
+<div class="page-background"></div>
+
+<div id="modalInstructions" class="modal-overlay" onclick="closeModalOnOut(event)">
+    <div class="modal-content shadow-2xl">
+        <div class="exam-paper">
+            <div class="flex justify-between items-start exam-header">
+                <div>
+                    <h2 class="text-2xl font-black uppercase">Examen Blanc - IA Coach</h2>
+                    <p class="text-sm font-bold text-teal-700">Matière : Administration Systèmes & Réseaux</p>
+                </div>
+                <div class="text-right text-sm">
+                    <p>Durée : 01h30</p>
+                    <p>Session : Décembre 2025</p>
+                </div>
+            </div>
+            <div class="space-y-6 text-sm">
+                <section>
+                    <h3 class="font-bold underline mb-2 text-lg">Question 1 : Gestion des processus (5 pts)</h3>
+                    <p>Analysez la sortie de la commande top fournie en annexe. Identifiez le processus zombie et expliquez la méthode pour libérer les ressources sans redémarrage.</p>
+                </section>
+                <section class="bg-teal-50 p-4 border-l-4 border-teal-500 rounded">
+                    <p class="font-bold text-teal-800 italic">Note de l'IA Coach :</p>
+                    <p class="text-teal-700">Ce test se concentre sur vos lacunes identifiées au chapitre 4 de votre historique d'apprentissage.</p>
+                </section>
+            </div>
+            <div class="mt-10 flex justify-end">
+                <button onclick="closeModal('modalInstructions')" class="px-6 py-2 bg-gray-800 text-white rounded-lg font-bold">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalDownload" class="modal-overlay" onclick="closeModalOnOut(event)">
+    <div class="modal-content p-8 text-center max-w-sm">
+        <div class="text-[#009688] text-5xl mb-4"><i class="fas fa-file-pdf"></i></div>
+        <h3 class="text-xl font-bold mb-2">Prêt pour le téléchargement</h3>
+        <p class="text-gray-500 text-sm mb-6">Le fichier PDF de votre examen généré par l'IA a été préparé avec succès.</p>
+        <button onclick="closeModal('modalDownload')" class="w-full py-3 bg-[#009688] text-white rounded-xl font-bold uppercase tracking-widest">Confirmer le téléchargement</button>
+    </div>
+</div>
+
+<div id="modalUpload" class="modal-overlay" onclick="closeModalOnOut(event)">
+    <div class="modal-content shadow-2xl p-8 text-center max-w-md">
+        <h3 class="text-xl font-bold mb-6 text-[#1a2b3c]">Déposer vos réponses</h3>
+        <input type="file" id="fileInput" class="mb-4 text-sm w-full border p-2 rounded">
+        <div class="flex space-x-3">
+            <button onclick="closeModal('modalUpload')" class="flex-1 py-2 bg-gray-200 rounded-lg text-gray-800">Annuler</button>
+            <button onclick="handleUpload()" class="flex-1 py-2 bg-[#009688] text-white rounded-lg">Envoyer</button>
+        </div>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <header class="relative bg-teal-600 shadow-lg z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined">menu_book</span>
+                <a href="home.html"><span class="text-xl font-semibold">IjaRivez</span></a>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-white/90">
+                <a href="#" class="nav-link">Accueil</a>
+                <a href="#" class="nav-link">Cours</a>
+                <a href="#" class="nav-link">Notifications</a>
+                <a href="index.html" class="border-b-2 border-white pb-1">Documents</a>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">person</span>
+                <span class="material-symbols-outlined hover:text-white cursor-pointer">logout</span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-10 max-w-6xl mx-auto px-4">
+        <div class="flex items-center justify-between mb-10">
+            <a href="calendrier.html" class="bg-white text-gray-800 font-bold py-2 px-6 rounded shadow-md hover:bg-gray-100 transition inline-flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Retour
+            </a>
+            <h1 class="text-4xl font-bold tracking-wide">Exacoach</h1>
+            <div class="w-32"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div>
+                <label class="block mb-2 text-xs font-bold uppercase opacity-70">Matière & Expertise IA</label>
+                <select class="w-full bg-white bg-opacity-10 border border-white border-opacity-30 p-2.5 rounded-lg text-white outline-none">
+                    <option class="text-black">Unix / Linux </option>
+                    <option class="text-black">UI/UX Design </option>
+                    <option class="text-black">Java </option>
+                    <option class="text-black">Python </option>
+                    <option class="text-black">C++ </option>
+                </select>
+            </div>
+            <div>
+                <label class="block mb-2 text-xs font-bold uppercase opacity-70">Profondeur de l'Analyse</label>
+                <select class="w-full bg-white bg-opacity-10 border border-white border-opacity-30 p-2.5 rounded-lg text-white outline-none">
+                    <option class="text-black">Examen blanc </option>
+                    <option class="text-black">Examen Pratique </option>
+                    <option class="text-black">Quiz</option>
+                    <option class="text-black">Analyse d'archives</option>
+                    <option class="text-black">Étude de cas complexe</option>
+                </select>
+            </div>
+            <div>
+                <label class="block mb-2 text-xs font-bold uppercase opacity-70">Niveau de Complexité</label>
+                <select class="w-full bg-white bg-opacity-10 border border-white border-opacity-30 p-2.5 rounded-lg text-white outline-none">
+                    <option class="text-black">Adaptatif</option>
+                    <option class="text-black">Facile</option>
+                    <option class="text-black">Expert</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 px-4 lg:px-10 mb-16">
+            <div class="test-card p-10 text-center relative overflow-hidden shadow-2xl">
+                <div class="absolute top-4 right-[-35px] bg-[#00ffd2] text-teal-900 text-[10px] py-1 px-10 rotate-45 font-black uppercase">Coach</div>
+                <h2 class="text-3xl font-bold mb-2">Test IA</h2>
+                <p class="text-[#00ffd2] text-[10px] font-bold tracking-widest uppercase mb-6">Prêt pour génération</p>
+                <button onclick="openModal('modalInstructions')" class="w-full py-2.5 border border-white rounded-lg hover:bg-white hover:text-teal-900 transition font-bold mb-4">Voir les instructions</button>
+                <button onclick="openModal('modalDownload')" class="w-full py-2.5 bg-black bg-opacity-30 border border-white border-opacity-30 rounded-lg flex items-center justify-center font-bold">
+                    Télécharger PDF IA <i class="fas fa-file-download ml-3"></i>
+                </button>
+            </div>
+
+            <div class="test-card p-10 text-center shadow-2xl">
+                <h2 class="text-3xl font-bold mb-2">Dépôt</h2>
+                <p class="text-gray-400 text-[10px] font-bold tracking-widest uppercase mb-6">Évaluation Finale</p>
+                <button onclick="openModal('modalUpload')" class="w-full py-2.5 bg-[#009688] rounded-lg flex items-center justify-center font-bold mb-4 shadow-lg">
+                    <i class="fas fa-upload mr-3"></i> Déposer vos réponses
+                </button>
+                <div class="w-full py-2.5 bg-black bg-opacity-30 border border-white border-opacity-10 rounded-lg flex items-center justify-center font-bold opacity-40 pointer-events-none select-none">
+                    Correction IA indisponible <i class="fas fa-lock ml-3 text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-xl font-bold mb-6 flex items-center">
+                <i class="fas fa-history mr-3 text-teal-400"></i> Historique de vos dépôts
+            </h3>
+            <div id="activitiesList" class="grid grid-cols-1 gap-4">
+            </div>
+        </div>
+    </main>
+
+    <footer class="relative bg-teal-500/95 backdrop-blur-sm border-t border-white/10 mt-8">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+                <div>
+                    <h4 class="text-base font-bold mb-3">Notifications</h4>
+                    <ul class="space-y-2 text-white/90 text-xs">
+                        <li>Nouveau cours disponible<br><span class="opacity-70">14 Oct 2025</span></li>
+                        <li>Devoir à rendre<br><span class="opacity-70">16 Oct 2025</span></li>
+                        <li>Maintenance planifiée<br><span class="opacity-70">18 Oct 2025</span></li>
+                        <li>Résultats d'examen<br><span class="opacity-70">20 Oct 2025</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-base font-bold mb-3">Documents</h4>
+                    <ul class="space-y-2 text-white/90 text-xs">
+                        <li>Guide étude<br><span class="opacity-70">PDF – 2.4MB</span></li>
+                        <li>Cours ux design complet<br><span class="opacity-70">PDF – 1.6MB</span></li>
+                        <li>Exercice pratique<br><span class="opacity-70">PDF – 2.5MB</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-base font-bold mb-3">Cours</h4>
+                    <ul class="space-y-2 text-white/90 text-xs">
+                        <li>UX design<br><span>Progression: 80%</span></li>
+                        <li>Mathématique<br><span>Progression: 8%</span></li>
+                        <li>Nouveau cours disponible<br><span>Progression: 19%</span></li>
+                        <li>Nouveau cours disponible<br><span>Progression: 29%</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="flex justify-center gap-6 pt-4 border-t border-white/20">
+                <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-lg text-white/80 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Initialisation : Charger les données au démarrage
+    document.addEventListener('DOMContentLoaded', () => {
+        renderActivities();
+    });
+
+    function openModal(id) {
+        document.getElementById(id).style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function closeModalOnOut(e) {
+        if(e.target.classList.contains('modal-overlay')) {
+            closeModal(e.target.id);
+        }
+    }
+
+    // Gestion de l'enregistrement persistant
+    function handleUpload() {
+        const fileInput = document.getElementById('fileInput');
+
+        if (fileInput.files.length === 0) {
+            alert("Veuillez choisir un fichier.");
+            return;
+        }
+
+        const fileName = fileInput.files[0].name;
+        const now = new Date();
+        const dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+
+        // 1. Lire le stockage local existant
+        let savedData = localStorage.getItem('exacoach_data');
+        let activities = savedData ? JSON.parse(savedData) : [];
+
+        // 2. Créer l'objet d'activité
+        const newEntry = {
+            id: Date.now(),
+            name: fileName,
+            date: dateStr,
+            status: 'Analyse IA en cours'
+        };
+
+        // 3. Sauvegarder
+        activities.unshift(newEntry); // Ajouter en haut de liste
+        localStorage.setItem('exacoach_data', JSON.stringify(activities));
+
+        alert("Analyse de l'IA lancée...");
+
+        setTimeout(() => {
+            closeModal('modalUpload');
+            renderActivities(); // Rafraîchir la vue
+            fileInput.value = ""; // Réinitialiser l'input
+        }, 1000);
+    }
+
+    // Fonction de rendu (Affichage)
+    function renderActivities() {
+        const container = document.getElementById('activitiesList');
+        const savedData = localStorage.getItem('exacoach_data');
+        const activities = savedData ? JSON.parse(savedData) : [];
+
+        if (activities.length === 0) {
+            container.innerHTML = '<div class="bg-white/5 p-8 rounded-xl text-center opacity-40 italic">Aucun dépôt enregistré pour le moment.</div>';
+            return;
+        }
+
+        container.innerHTML = activities.map(act => `
+            <div class="test-card p-6 flex justify-between items-center animate-fade-in">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-teal-500/20 p-3 rounded-full text-teal-400">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white">${act.name}</h4>
+                        <p class="text-[10px] text-white/40 uppercase tracking-widest">${act.date}</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-[9px] font-black uppercase bg-teal-600/30 text-teal-300 px-3 py-1 rounded-full border border-teal-500/20">
+                        ${act.status}
+                    </span>
+                    <button onclick="deleteActivity(${act.id})" class="text-white/20 hover:text-red-400 transition">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Optionnel : Supprimer une activité
+    function deleteActivity(id) {
+        let activities = JSON.parse(localStorage.getItem('exacoach_data'));
+        activities = activities.filter(a => a.id !== id);
+        localStorage.setItem('exacoach_data', JSON.stringify(activities));
+        renderActivities();
+    }
+</script>
+
+</body>
+</html>
